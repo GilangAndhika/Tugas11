@@ -193,7 +193,7 @@ function addUserLocationMarker() {
 
 // Lokasi parkir
 const parkingLocations = [
-  { name: "Warung Madura Cak Kumis", coordinates: [107.580642, -6.883722] },
+  { name: "Warung Madura Cak Kumis", coordinates: [107.5757053573939, -6.874809177781481] },
   { name: "Warung Madura Pakde Gembul", coordinates: [107.579529, -6.882788] },
 ];
 
