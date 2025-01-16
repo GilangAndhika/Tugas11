@@ -11,8 +11,13 @@
   <header>
     <div class="header-container">
       <h1>Warung Madura Map</h1>
+      <button id="burger-menu" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav>
-        <ul>
+        <ul id="nav-links" class="hidden">
           <li><a href="#map">Peta</a></li>
           <li><a href="#about">Tentang</a></li>
           <li><a href="#contact">Kontak</a></li>
@@ -20,7 +25,7 @@
       </nav>
     </div>
   </header>
-
+  
   <!-- Map container -->
   <main>
     <div id="map"></div>
@@ -47,7 +52,8 @@
     </div>
   </footer>
 
-  <!-- Script -->
-  <script type="module" src="./script.js"></script>
+  <!-- Scripts -->
+  <script src="./responsive.js" defer></script>
+  <script src="./script.js" type="module" defer></script>
 </body>
 </html>
