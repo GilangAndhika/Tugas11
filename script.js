@@ -65,7 +65,7 @@ addMarkerButton.addEventListener('click', () => {
     marker.setStyle(
       new Style({
         image: new Icon({
-          src: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+          src: 'https://cdn-icons-png.flaticon.com/512/4969/4969682.png',
           scale: 0.05,
         }),
       })
@@ -125,8 +125,8 @@ function addUserLocationMarker() {
         userMarker.setStyle(
           new Style({
             image: new Icon({
-              src: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', // Ikon untuk pengguna
-              scale: 0.05,
+              src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOlQ3YDl7-HxQXG0WqXzCp0ySumfEcYVJSBw&s', // Ikon untuk pengguna
+              scale: 0.10,
               anchor: [0.5, 1],
             }),
           })
@@ -146,7 +146,7 @@ function addUserLocationMarker() {
           zoom: 16,
         });
 
-        // Cari lokasi Parkir terdekat
+        // Cari lokasi parkir terdekat
         const nearestLocation = findNearestLocation(userCoordinates, parkingLocations);
         if (nearestLocation) {
           const nearestMarker = new Feature({
@@ -157,7 +157,7 @@ function addUserLocationMarker() {
           nearestMarker.setStyle(
             new Style({
               image: new Icon({
-                src: 'https://cdn-icons-png.flaticon.com/512/854/854878.png', // Ikon untuk lokasi terdekat
+                src: 'https://cdn-icons-png.flaticon.com/512/4969/4969682.png', // Ikon untuk lokasi terdekat
                 scale: 0.05,
               }),
             })
@@ -167,8 +167,8 @@ function addUserLocationMarker() {
 
           // Menampilkan notifikasi lokasi terdekat
           Swal.fire({
-            title: "Lokasi Rumah Sakit Terdekat",
-            text: `Lokasi terdekat adalah ${nearestLocation.name}.`,
+            title: "Ayo Tandai Warung Madura Di Dekat Anda",
+            text: ``,
             icon: "info",
           });
         }
@@ -193,8 +193,8 @@ function addUserLocationMarker() {
 
 // Lokasi parkir
 const parkingLocations = [
-  { name: "Hospital A", coordinates: [107.580642, -6.883722] },
-  { name: "Hospital B", coordinates: [107.579529, -6.882788] },
+  { name: "Warung Madura Cak Kumis", coordinates: [107.580642, -6.883722] },
+  { name: "Warung Madura Pakde Gembul", coordinates: [107.579529, -6.882788] },
 ];
 
 function findNearestLocation(userCoordinates, locations) {
@@ -217,3 +217,54 @@ function findNearestLocation(userCoordinates, locations) {
 }
 
 addUserLocationMarker();
+
+let isPopupVisible = false; // Melacak status pop-up informasi
+
+map.on('click', (event) => {
+  // Reset status popup visible
+  isPopupVisible = false;
+
+  // Cek apakah mengklik fitur di peta
+  map.forEachFeatureAtPixel(event.pixel, (feature) => {
+    const description = feature.get('description');
+    const longitude = feature.get('longitude');
+    const latitude = feature.get('latitude');
+    if (description) {
+      isPopupVisible = true; // Set popup menjadi terlihat
+      popup.classList.add('hidden'); // Sembunyikan form saat popup info muncul
+
+      // Buat dan tampilkan pop-up informasi
+      const infoPopup = document.createElement('div');
+      infoPopup.className = 'popup';
+      infoPopup.innerHTML = `
+        <div class="popup-content">
+          <h3>Informasi Marker:</h3>
+          <p><strong>Deskripsi:</strong> ${description}</p>
+          <p><strong>Longitude:</strong> ${longitude}</p>
+          <p><strong>Latitude:</strong> ${latitude}</p>
+          <button id="close-info">Tutup</button>
+        </div>
+      `;
+      document.body.appendChild(infoPopup);
+
+      infoPopup.querySelector('#close-info').addEventListener('click', () => {
+        infoPopup.remove();
+        isPopupVisible = false; // Atur kembali popup visible
+      });
+    }
+  });
+
+  // Jika tidak ada popup informasi, tampilkan form tambah marker
+  if (!isPopupVisible) {
+    const coordinates = toLonLat(event.coordinate);
+    const longitude = coordinates[0].toFixed(6);
+    const latitude = coordinates[1].toFixed(6);
+
+    selectedCoordinates = event.coordinate;
+
+    popup.querySelector('h3').textContent = `Masukkan Lokasi:
+Longitude: ${longitude}
+Latitude: ${latitude}`;
+    popup.classList.remove('hidden');
+  }
+});
