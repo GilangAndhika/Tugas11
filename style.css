@@ -187,7 +187,7 @@ nav ul li a:hover {
     text-align: center;
     padding: 1rem 0;
   }
-  
+
   #nav-links.hidden {
     display: none;
   }
@@ -216,5 +216,35 @@ nav ul li a:hover {
 
   #burger-menu.open span:nth-child(3) {
     transform: rotate(-45deg) translateY(-6px);
+  }
+
+  .popup {
+    width: 90%;
+    max-width: none; /* Menghilangkan batasan ukuran maksimum */
+    padding: 1rem; /* Mengurangi padding agar lebih cocok untuk layar kecil */
+  }
+
+  .popup input {
+    font-size: 1rem; /* Menyesuaikan ukuran font */
+    padding: 0.7rem; /* Menambah padding untuk area klik yang lebih besar */
+  }
+
+  .popup label {
+    font-size: 0.9rem; /* Mengurangi ukuran font untuk label */
+  }
+
+  .popup button {
+    font-size: 1rem; /* Memastikan tombol tetap mudah dibaca */
+    padding: 0.7rem 1rem; /* Menambah ukuran tombol */
+    width: 100%; /* Membuat tombol melebar untuk menghindari spasi berlebih */
+    margin-bottom: 1rem; /* Memberikan jarak antar tombol */
+  }
+
+  #add-marker {
+    margin-right: 0; /* Menghilangkan margin kanan pada tombol */
+  }
+
+  .popup button:last-child {
+    margin-bottom: 0; /* Menghilangkan margin bawah untuk tombol terakhir */
   }
 }
