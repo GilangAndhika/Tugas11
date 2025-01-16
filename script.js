@@ -152,6 +152,8 @@ function addUserLocationMarker() {
           const nearestMarker = new Feature({
             geometry: new Point(fromLonLat(nearestLocation.coordinates)),
             description: nearestLocation.name,
+            longitude: nearestLocation.coordinates[0],
+            latitude: nearestLocation.coordinates[1],
           });
 
           nearestMarker.setStyle(
@@ -227,8 +229,8 @@ map.on('click', (event) => {
   // Cek apakah mengklik fitur di peta
   map.forEachFeatureAtPixel(event.pixel, (feature) => {
     const description = feature.get('description');
-    const longitude = feature.get('longitude');
-    const latitude = feature.get('latitude');
+    const longitude = feature.get('longitude'); // Ambil longitude
+    const latitude = feature.get('latitude'); // Ambil latitude
     if (description) {
       isPopupVisible = true; // Set popup menjadi terlihat
       popup.classList.add('hidden'); // Sembunyikan form saat popup info muncul
