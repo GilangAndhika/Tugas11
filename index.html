@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Map</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <h1>Hospital Map</h1>
+      <nav>
+        <ul>
+          <li><a href="#map">Peta</a></li>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Map container -->
+  <main>
+    <div id="map"></div>
+
+    <!-- Popup for adding marker -->
+    <div id="popup" class="popup hidden">
+      <h3>Tambahkan Marker</h3>
+      <label for="marker-description">Deskripsi Marker:</label>
+      <input type="text" id="marker-description" placeholder="Masukkan deskripsi">
+      <br><br>
+      <button id="add-marker">Tambahkan Marker</button>
+      <button id="cancel">Batal</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Hospital Map. Semua hak dilindungi.</p>
+      <ul>
+        <li><a href="#privacy">Kebijakan Privasi</a></li>
+        <li><a href="#terms">Syarat dan Ketentuan</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script type="module" src="/script.js"></script>
+</body>
+</html>
